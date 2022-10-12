@@ -13,7 +13,7 @@ export function App (){
 const submit=(e)=>{
   e.preventDefault()
   setSearch(e.target.elements[1].value)
-  e.target.elements[1].value=''
+  e.target.reset()
 }
 
 const modalClose=()=>{

@@ -11,5 +11,9 @@ export default function Item({results}){
     }
 
 Item.propTypes = {
-    results:PropTypes.arrayOf(PropTypes.object),
+    results:PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        largeImageURL: PropTypes.string,
+        type: PropTypes.string
+      }),),
   };
