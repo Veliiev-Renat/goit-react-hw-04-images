@@ -2,18 +2,17 @@ import { useEffect } from "react";
 import PropTypes from 'prop-types';
 
 export default function Modal({close,src,click}){
-    const esc=(e)=>{
-    if(e.code==='Escape'){
-        close()
-    }
-   }
+
     useEffect(()=>{
+      const esc=(e)=>{
+        if(e.code==='Escape'){
+            close()
+        }
+       }
         window.addEventListener('keydown',esc)
-    },[])
+        return ()=>(window.removeEventListener('keydown',esc))
+    },[close])
     
-    useEffect(()=>{
-        return ()=>(window.removeEventListener('keydown',esc)) 
-    },[])
 
 
         return(
