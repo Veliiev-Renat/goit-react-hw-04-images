@@ -4,22 +4,14 @@ import Button from "components/Button/Button";
 import Loader from "components/Loader/Loader";
 import PropTypes from 'prop-types';
 
-export default function Gallery({open,search}){
+export default function Gallery({open,search,page,downloadMore}){
 
 const[images,setImages] = useState([])
 const[loading,setLoading] = useState(false)
-const[page,setPage] = useState(1)
 const [hidden,setHidden] = useState(false)
 
-
-const click=(e)=>{
-setPage(prevState=>(prevState + 1))
-}
-
 useEffect(()=>{
-    setImages([])
-    setPage(1)
-    setHidden(false)
+setImages([])
 },[search])
 
 useEffect(()=>{
@@ -52,7 +44,7 @@ fetch(`https://pixabay.com/api/?q=${search}&page=${page}&key=30307607-789dc1a943
             <ul className="ImageGallery" onClick={open}>
             {images.length > 0 &&<Item results={images}/>}
             </ul>
-            {hidden && <Button click={click}/>}
+            {hidden && <Button click={downloadMore}/>}
             {loading && <Loader/>}
             </>
             )
@@ -60,7 +52,9 @@ fetch(`https://pixabay.com/api/?q=${search}&page=${page}&key=30307607-789dc1a943
 
 Gallery.propTypes = {
     click: PropTypes.func,
-    open: PropTypes.func
+    open: PropTypes.func,
+    page:PropTypes.number,
+    downloadMore:PropTypes.func
   };
 
     

@@ -8,10 +8,12 @@ export function App (){
   const [search,setSearch] = useState('')
   const [open,setOpen] = useState(false)
   const [img,setImg] = useState('')
+  const [page,setPage] = useState(1)
 
 
 const submit=(e)=>{
   e.preventDefault()
+  setPage(1)
   setSearch(e.target.elements[1].value)
   e.target.reset()
 }
@@ -26,7 +28,11 @@ const backdropClick=e=>{
   }
 }
 
-
+const click=(e)=>{
+  setPage(prevState=>(prevState + 1))
+  console.log(page)
+  }
+  
 const openModal=(e)=>{
 if(e.target.nodeName==='IMG'){
     setOpen(true)
@@ -38,8 +44,8 @@ if(e.target.nodeName==='IMG'){
 <>
 <div className="App">
 <Seartchbar onSubmit={submit}/>
-<Gallery search={search} open={openModal}/>
-{open && <Modal src={img} close={modalClose} click={backdropClick}/>}
+<Gallery search={search} open={openModal} page={page} downloadMore={click}/>
+{open && <Modal src={img} close={modalClose} click={backdropClick}  />}
 </div>
 </>
   );
