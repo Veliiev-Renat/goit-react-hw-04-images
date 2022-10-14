@@ -11,7 +11,9 @@ const[loading,setLoading] = useState(false)
 const [hidden,setHidden] = useState(false)
 
 useEffect(()=>{
-setImages([])
+    if(search.trim() !==''){
+        setImages([])
+    }
 },[search])
 
 useEffect(()=>{
